@@ -6,26 +6,15 @@ import ContainerPlugin from 'base/container_plugin'
 import UIContainerPlugin from 'base/ui_container_plugin'
 
 import HTML5VideoPlayback from 'playbacks/html5_video'
-import FlashVideoPlayback from 'playbacks/flash'
-import HTML5AudioPlayback from 'playbacks/html5_audio'
-import FlasHLSVideoPlayback from 'playbacks/flashls'
-import HLSVideoPlayback from 'playbacks/hls'
-import HTMLImgPlayback from 'playbacks/html_img'
 import NoOp from 'playbacks/no_op'
 
 describe('Loader', function() {
   describe('default playback order', function() {
-    it('should have the priority MSE > HTML5 > Flash', function() {
+    it('should have the priority HTML5 > NoOp', function() {
       const loader = new Loader()
 
       // expected order from previous Clappr versions
-      const expectedPlaybacks = [HLSVideoPlayback, HTML5VideoPlayback, HTML5AudioPlayback, FlashVideoPlayback, FlasHLSVideoPlayback, HTMLImgPlayback, NoOp]
-      expect(loader.playbackPlugins).to.deep.equal(expectedPlaybacks)
-    })
-
-    it('should not contain the MSE/Flash based playbacks when PLAIN_HTML5_ONLY is set', function() {
-      const loader = new Loader([], 0, true)
-      const expectedPlaybacks = [HTML5VideoPlayback, HTML5AudioPlayback, HTMLImgPlayback, NoOp]
+      const expectedPlaybacks = [HTML5VideoPlayback, NoOp]
       expect(loader.playbackPlugins).to.deep.equal(expectedPlaybacks)
     })
   })
@@ -87,16 +76,16 @@ describe('Loader', function() {
     })
 
     it('should allow only a plugin with a given name', function() {
-      const spinnerPlugin = ContainerPlugin.extend({ container: {},  name: 'spinner' })
+      const sourcesPlugin = CorePlugin.extend({ core: {},  name: 'sources' })
       const loader = new Loader()
-      expect(loader.containerPlugins.filter((plugin) => {
-        return plugin.prototype.name === 'spinner'
+      expect(loader.corePlugins.filter((plugin) => {
+        return plugin.prototype.name === 'sources'
       }).length).to.be.equal(1)
 
-      loader.addExternalPlugins({ container: [spinnerPlugin] })
+      loader.addExternalPlugins({ container: [sourcesPlugin] })
 
       expect(loader.containerPlugins.filter((plugin) => {
-        return plugin.prototype.name === 'spinner'
+        return plugin.prototype.name === 'sources'
       }).length).to.be.equal(1)
     })
   })

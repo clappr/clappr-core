@@ -10,8 +10,7 @@
 * then second step
 * I was expecting X but instead it shows Y
 
-Did you try to reproduce this issue at http://cdn.clappr.io/
+Did you try to reproduce this issue at http://clappr.io/demo
 
 ps: you can attach images, logs or whatever you think might be helpful.
 ps: feel free to clean this if your issue is different.
-

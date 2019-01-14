@@ -1,15 +1,13 @@
 {
-  "name": "clappr",
+  "name": "clappr-core",
   "version": "0.3.2",
-  "description": "An extensible media player for the web",
-  "main": "./dist/clappr.js",
+  "description": "An extensible media player for the web (core components)",
+  "main": "./dist/clappr-core.js",
   "scripts": {
     "bundle-check": "./node_modules/.bin/webpack -p --config './webpack.config.bundle-analyzer.js'",
     "release": "MINIMIZE=true ./node_modules/.bin/webpack --progress",
-    "release:plainhtml5": "MINIMIZE=true CLAPPR_PLAIN_HTML5_ONLY=true ./node_modules/.bin/webpack --progress",
     "build": "./node_modules/.bin/webpack --progress",
     "build:debug": "CLAPPR_INLINE_DEBUG=true ./node_modules/.bin/webpack --progress",
-    "build:plainhtml5": "CLAPPR_PLAIN_HTML5_ONLY=true ./node_modules/.bin/webpack --progress",
     "watch": "./node_modules/.bin/webpack --progress --watch",
     "test": "./node_modules/.bin/karma start --single-run",
     "test:watch": "./node_modules/.bin/karma start --no-single-run --watch",

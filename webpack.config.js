@@ -3,18 +3,13 @@ const path = require('path')
 const webpack = require('webpack')
 
 const webpackConfig = require('./webpack-base-config')
-const voidModulePath = path.resolve('./src/base/void')
 
 const minimize = !!process.env.MINIMIZE
 const forceInlineDebug = !!process.env.CLAPPR_INLINE_DEBUG
-const plainHtml5Only = !!process.env.CLAPPR_PLAIN_HTML5_ONLY
-
-let distroFlavor
 
 webpackConfig.entry = path.resolve(__dirname, 'src/main.js')
 
 if (minimize) {
-
   console.log('NOTE: Enabled minifying bundle (uglify)')
 
   webpackConfig.plugins.push(new webpack.LoaderOptionsPlugin({ minimize, debug: !minimize }))
@@ -29,19 +24,6 @@ if (minimize) {
   }))
 }
 
-if (plainHtml5Only) {
-  console.log('NOTE: Building only with plain HTML5 playback plugins, but will result in smaller build size')
-
-  distroFlavor = 'plainhtml5'
-
-  webpackConfig.plugins.push(
-    new webpack.NormalModuleReplacementPlugin(/playbacks\/flash/, voidModulePath),
-    new webpack.NormalModuleReplacementPlugin(/playbacks\/base_flash_playback/, voidModulePath),
-    new webpack.NormalModuleReplacementPlugin(/playbacks\/flashls/, voidModulePath),
-    new webpack.NormalModuleReplacementPlugin(/playbacks\/hls/, voidModulePath)
-  )
-}
-
 if (forceInlineDebug) {
   console.log('NOTE: Enabling inline source-maps - this may not be suitable for production usage')
   webpackConfig.devtool = 'inline-source-map'
@@ -49,8 +31,7 @@ if (forceInlineDebug) {
 
 console.log('\n')
 
-const filename =
-  `clappr${ distroFlavor ? '.' + distroFlavor : '' }${ forceInlineDebug ? '.debug' : '' }${ minimize ? '.min' : '' }.js`
+const filename = `clappr-core${ minimize ? '.min' : '' }.js`
 
 webpackConfig.output = {
   path: path.resolve(__dirname, 'dist'),

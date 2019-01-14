@@ -13,9 +13,7 @@ export default class SourcesPlugin extends CorePlugin {
     const firstValidSource = this.core.containers.filter(container => container.playback.name !== 'no_op')[0] || this.core.containers[0]
     if (firstValidSource) {
       this.core.containers.forEach((container) => {
-        if (container !== firstValidSource)
-          container.destroy()
-
+        if (container !== firstValidSource) container.destroy()
       })
     }
   }
