@@ -12,8 +12,9 @@ webpackConfig.entry = path.resolve(__dirname, 'src/main.js')
 if (minimize) {
   console.log('NOTE: Enabled minifying bundle (uglify)')
 
+  webpackConfig.mode = 'production'
   webpackConfig.plugins.push(new webpack.LoaderOptionsPlugin({ minimize, debug: !minimize }))
-  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+  webpackConfig.otimization.minimizer.push(new UglifyJsPlugin({
     compress: {
       warnings: false
     },
