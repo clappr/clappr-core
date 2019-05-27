@@ -3,8 +3,10 @@ var path = require('path')
 
 var webpackConfig = require('./webpack-base-config')
 
+webpackConfig.mode = 'none'
+
 // add subject as webpack's postloader
-webpackConfig.module.loaders.push({
+webpackConfig.module.rules.push({
   test: /\.js$/,
   exclude: /(test|node_modules|bower_components)\//,
   loader: 'istanbul-instrumenter-loader',

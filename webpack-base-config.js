@@ -5,16 +5,16 @@ var webpack = require('webpack')
 var DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 
 module.exports = {
+  mode: 'development',
   node: { Buffer: false, global: true, process: true, setImmediate: false },
   plugins: [
-    new DirectoryNamedWebpackPlugin(true),
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(require('./package.json').version),
       PLAIN_HTML5_ONLY: JSON.stringify(!!process.env.CLAPPR_PLAIN_HTML5_ONLY)
     })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -50,6 +50,9 @@ module.exports = {
     ]
   },
   resolve: {
+    plugins: [
+      new DirectoryNamedWebpackPlugin(true)
+    ],
     alias: {
       'clappr-zepto': 'clappr-zepto/zepto.js'
     },
@@ -57,6 +60,5 @@ module.exports = {
   },
   devServer: {
     disableHostCheck: true, // https://github.com/webpack/webpack-dev-server/issues/882
-  },
-  devtool: 'source-map'
+  }
 }
