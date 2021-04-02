@@ -43,6 +43,7 @@ export default class HTML5Video extends Playback {
   get name() { return 'html5_video' }
   get supportedVersion() { return { min: VERSION } }
   get tagName() { return this.isAudioOnly ? 'audio' : 'video' }
+  get template() { return template(tracksHTML) }
 
   get isAudioOnly() {
     const resourceUrl = this.options.src
@@ -648,8 +649,6 @@ export default class HTML5Video extends Playback {
       id: trackId
     })
   }
-
-  get template() { return template(tracksHTML) }
 
   render() {
     this.options.playback.disableContextMenu && this.$el.on('contextmenu', () => { return false })
