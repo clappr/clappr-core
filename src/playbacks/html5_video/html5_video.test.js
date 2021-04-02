@@ -609,4 +609,14 @@ describe('HTML5Video playback', function() {
       expect(html5Video._updateDvr).toHaveBeenCalledWith(true)
     })
   })
+
+  describe('_onLoadedMetadata callback', () => {
+    test('calls _ready method', () => {
+      const playback = new HTML5Video({ src: '/test/fixtures/SampleVideo_360x240_1mb.mp4' })
+      jest.spyOn(playback, '_ready')
+      playback.el.dispatchEvent(new Event('loadedmetadata'))
+
+      expect(playback._ready).toHaveBeenCalledTimes(1)
+    })
+  })
 })
