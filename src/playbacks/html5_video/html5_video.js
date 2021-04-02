@@ -652,17 +652,8 @@ export default class HTML5Video extends Playback {
   get template() { return template(tracksHTML) }
 
   render() {
-    if (this.options.playback.disableContextMenu) {
-      this.$el.on('contextmenu', () => {
-        return false
-      })
-    }
-
-    if (this._externalTracks && this._externalTracks.length > 0) {
-      this.$el.html(this.template({
-        tracks: this._externalTracks,
-      }))
-    }
+    this.options.playback.disableContextMenu && this.$el.on('contextmenu', () => { return false })
+    this._externalTracks && this._externalTracks.length > 0 && this.$el.html(this.template({ tracks: this._externalTracks }))
 
     this._ready()
     const style = Styler.getStyleFor(HTML5VideoStyle.toString(), { baseUrl: this.options.baseUrl })
