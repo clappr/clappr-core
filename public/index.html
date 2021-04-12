@@ -1,15 +1,10 @@
 <html>
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script type="text/javascript" charset="utf-8" src="clappr-core.js"></script>
-  <script type="text/javascript" charset="utf-8" src="j/main.js"></script>
-  <script type="text/javascript" charset="utf-8" src="j/editor/ace.js"></script>
-  <script type="text/javascript" charset="utf-8" src="j/add-external.js"></script>
-  <link rel="stylesheet" href="stylesheets/bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="stylesheet" href="stylesheets/style.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="shortcut icon" type="image/png" href="i/favico.png">
+  <link rel="shortcut icon" type="image/png" href="assets/favico.png">
+  <style>
+    *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-size:62.5%;-webkit-tap-highlight-color:transparent}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}a{background:0 0;color:#428bca;text-decoration:none}body{margin:0;padding:0;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff}.header{position:relative;margin:0;right:0;left:0;padding:0 4%;top:0;background-color:#747474;color:#eee;height:50px;line-height:50px;width:100%}.header span{font-size:30px;font-weight:700}.header img{height:45px}.header ul{right:7%}.header a,.header li,.header ul{position:relative;display:inline;float:right;color:#ddd;margin:0;padding:0;outline:0}a:hover{color:#fff;text-decoration:none}.header a:visited,a:active,a:link{color:#ddd;text-decoration:none}.run{display:block;float:right;margin:20px 0}.container{text-align:center}.main{display:inline-block;margin:0;padding:0 20px 0 20px;border:0}.external-js{border-style:solid;border-width:1px;color:#dcdcdc;font-size:10px;padding:2px;margin-right:2px;font-family:monospace}#player-wrapper{min-width:320px;min-height:180px}.sidebar{display:inline-block;text-align:left;width:680px;margin:0;padding:15px 20px 0 20px;border:0}#editor{border:1px solid #c0c0ee;min-height:230px}#console{position:relative;color:red;left:2%;top:65px}.btn:focus{outline:0}.player{display:inline-block;margin:0 auto;height:auto;width:auto}
+  </style>
 </head>
 
 <body>
@@ -53,8 +48,9 @@ player.attachTo(playerElement);
     </div>
   </section>
   <footer class="footer"></footer>
-  <script type="text/javascript" charset="utf-8" src="j/clappr-config.js"></script>
-  <script type="text/javascript" charset="utf-8" src="j/main.js"></script>
+  <script type="text/javascript" charset="utf-8" src="//pagecdn.io/lib/ace/1.4.6/ace.js" defer></script>
+  <script type="text/javascript" charset="utf-8" src="javascript/add-external.js" defer></script>
+  <script type="module" src="javascript/clappr-config.js" defer></script>
+  <script type="text/javascript" charset="utf-8" src="javascript/main.js" defer></script>
 </body>
-
 </html>

@@ -7,7 +7,6 @@ import resolve from '@rollup/plugin-node-resolve'
 import html from 'rollup-plugin-html'
 import namedDirectory from 'rollup-plugin-named-directory'
 import postcss from 'rollup-plugin-postcss'
-import livereload from 'rollup-plugin-livereload'
 import serve from 'rollup-plugin-serve'
 import filesize from 'rollup-plugin-filesize'
 import size from 'rollup-plugin-sizes'
@@ -31,7 +30,6 @@ const aliasPluginOptions = { entries: { 'clappr-zepto': 'node_modules/clappr-zep
 const replacePluginOptions = { VERSION: JSON.stringify(pkg.version) }
 const babelPluginOptions = { babelHelpers: 'bundled', exclude: 'node_modules/**' }
 const servePluginOptions = { contentBase: ['dist', 'public'], host: '0.0.0.0', port: '8080' }
-const livereloadPluginOptions = { watch: ['dist', 'public'] }
 const visualizePluginOptions = { open: true, filename: './public/stats.html' }
 
 const plugins = [
@@ -47,7 +45,6 @@ const plugins = [
   size(),
   filesize(),
   dev && serve(servePluginOptions),
-  dev && livereload(livereloadPluginOptions),
   analyzeBundle && visualize(visualizePluginOptions)
 ]
 
