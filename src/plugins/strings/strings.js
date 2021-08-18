@@ -64,7 +64,7 @@ export default class Strings extends CorePlugin {
         'disabled': 'Video no disponible',
         'playback_not_supported': 'Su navegador no soporta la reproducción de este video. Por favor, utilice un navegador diferente.',
       },
-      'es-es': {
+      'esp': {
         'live': 'en directo',
         'back_to_live': 'volver al directo',
         'disabled': 'Vídeo no disponible en este momento',
@@ -111,7 +111,7 @@ export default class Strings extends CorePlugin {
     this._messages['pt-BR'] = this._messages['pt']
     this._messages['en-US'] = this._messages['en']
     this._messages['es-419'] = this._messages['es']
-    this._messages['es-ES'] = this._messages['es-es']
+    this._messages['es-ES'] = this._messages['esp']
     this._messages['fr-FR'] = this._messages['fr']
     this._messages['tr-TR'] = this._messages['tr']
     this._messages['et-EE'] = this._messages['et']
