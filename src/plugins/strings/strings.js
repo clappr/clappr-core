@@ -105,6 +105,7 @@ export default class Strings extends CorePlugin {
     this._messages['pt-BR'] = this._messages['pt']
     this._messages['en-US'] = this._messages['en']
     this._messages['es-419'] = this._messages['es']
+    this._messages['es-ES'] = this._messages['es']
     this._messages['fr-FR'] = this._messages['fr']
     this._messages['tr-TR'] = this._messages['tr']
     this._messages['et-EE'] = this._messages['et']
