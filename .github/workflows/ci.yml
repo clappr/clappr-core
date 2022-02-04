@@ -18,4 +18,5 @@ jobs:
       - run: yarn install
   lint:
     needs: build
+    steps:
       - run: yarn lint
