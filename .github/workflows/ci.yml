@@ -14,10 +14,24 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn install
-      - name: Run lint
-        run: yarn lint
-      - name: Run tests
-        run: yarn test
+
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        env:
+          cache-name: yarn-modules
+        with:
+          path: ~/.yarn
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+            
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm build
+
+      - name: Test
+        run: npm test
