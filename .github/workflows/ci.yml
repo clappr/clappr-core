@@ -15,7 +15,9 @@ jobs:
         with:
           node-version: 14
           cache: 'yarn'
-      - name: Step 1
+      - name: Install dependencies
         run: yarn install
-      - name: Step 2
+      - name: Run lint
         run: yarn lint
+      - name: Run tests
+        run: yarn test
