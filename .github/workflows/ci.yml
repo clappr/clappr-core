@@ -17,4 +17,4 @@ jobs:
           node-version: 14
           cache: 'yarn'
       - run: yarn install
-      - ryn: yarn lint
+      - run: yarn lint
