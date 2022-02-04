@@ -9,5 +9,12 @@ on:
 jobs:
   myjob:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "It Works."
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+          with:
+            node-version: 14
+            cache: 'yarn'
+      - run: yarn install
+      - ryn: yarn lint
