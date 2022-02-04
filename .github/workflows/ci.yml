@@ -16,8 +16,4 @@ jobs:
           node-version: 14
           cache: 'yarn'
       - run: yarn install
-  lint:
-    name: Testing
-    needs: build
-    steps:
       - run: yarn lint
