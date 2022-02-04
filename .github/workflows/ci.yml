@@ -10,14 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
-          cache: 'yarn'
-      - run: yarn install
-  lint:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - run: yarn lint
+      - name: Step 1
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: 14
+            cache: 'yarn'
+        - run: yarn install
+      - name: Step 2
+        - run: yarn lint
