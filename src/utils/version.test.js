@@ -9,7 +9,7 @@ describe('Version', () => {
       expect(v.patch).toEqual(3)
     })
 
-    test('parses a version string in the format major.minor (patch omitted)', () => {
+    test('parses a version string in the format major.minor (patch omitted ss)', () => {
       const v = Version.parse('1.2')
       expect(v.major).toEqual(1)
       expect(v.minor).toEqual(2)
