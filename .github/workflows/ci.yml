@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,6 +17,6 @@ jobs:
           cache: 'yarn'
       - run: yarn install
   lint:
-    name: Lint
     needs: build
-    - run: yarn lint
+    steps:
+      - run: yarn lint
