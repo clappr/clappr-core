@@ -109,7 +109,11 @@ export default class Core extends UIObject {
    * @type {Object}
    */
   get activePlaybackEl() {
-    return this.activePlayback.$el.find('video')[0] || this.activePlayback.el
+    if (!this.activePlayback) return false
+    if (this.activePlayback.el)
+      return this.activePlayback.el
+    return this.activePlayback.$el.find('video')[0]
+
   }
 
   constructor(options) {
@@ -166,7 +170,7 @@ export default class Core extends UIObject {
   }
 
   resize(options) {
-    if (!isNumber(options.height) && !isNumber(options.width))  {
+    if (!isNumber(options.height) && !isNumber(options.width)) {
       this.el.style.height = `${options.height}`
       this.el.style.width = `${options.width}`
     } else {
@@ -316,11 +320,11 @@ export default class Core extends UIObject {
   isFullscreen() {
     // Ensure current instance is in fullscreen mode by checking fullscreen element
     const fullscreenElement = Fullscreen.fullscreenElement()
-    const isElementInFullscreen = fullscreenElement && ((fullscreenElement === this.el) 
-    || (fullscreenElement === this.activePlaybackEl)) 
-    || this.activePlaybackEl.webkitDisplayingFullscreen
-    
-    return isElementInFullscreen 
+    const isElementInFullscreen = fullscreenElement && ((fullscreenElement === this.el)
+      || (fullscreenElement === this.activePlaybackEl))
+      || this.activePlaybackEl.webkitDisplayingFullscreen
+
+    return isElementInFullscreen
   }
 
   toggleFullscreen() {

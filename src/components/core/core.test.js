@@ -55,14 +55,14 @@ describe('Core', function() {
     test('returns false when there\'s no active fullscreen element', () => {
       jest.spyOn(Fullscreen, 'fullscreenElement').mockReturnValue(undefined)
 
-      expect(this.core.isFullscreen()).toEqual(false)
+      expect(this.core.isFullscreen()).toBeFalsy()
     })
 
     test('returns false when the active fullscreen element is not the core element', () => {
       const el = document.createElement('div')
       jest.spyOn(Fullscreen, 'fullscreenElement').mockReturnValue(el)
 
-      expect(this.core.isFullscreen()).toEqual(false)
+      expect(this.core.isFullscreen()).toBeFalsy()
     })
 
     test('returns true if the active fullscreen element is the core element', () => {
@@ -87,7 +87,7 @@ describe('Core', function() {
       test('returns false if there\'s no active playback', () => {
         this.core.activeContainer = undefined
 
-        expect(this.core.isFullscreen()).toEqual(false)
+        expect(this.core.isFullscreen()).toBeFalsy()
       })
 
       test('returns true if the fullscreen element is from the active playback', () => {
@@ -187,12 +187,12 @@ describe('Core', function() {
         fakeContainer1.setAttribute('id', 'fakeContainer1')
         newInstance.el = fakeContainer1
 
-        expect(this.core.isFullscreen()).toEqual(false)
-        expect(newInstance.isFullscreen()).toEqual(false)
+        expect(this.core.isFullscreen()).toBeFalsy()
+        expect(newInstance.isFullscreen()).toBeFalsy()
 
         jest.spyOn(Fullscreen, 'fullscreenElement').mockReturnValue(fakeContainer1)
 
-        expect(this.core.isFullscreen()).toEqual(false)
+        expect(this.core.isFullscreen()).toBeFalsy()
         expect(newInstance.isFullscreen()).toEqual(true)
       })
     })
