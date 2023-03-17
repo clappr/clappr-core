@@ -315,4 +315,34 @@ describe('Container', function() {
       expect(this.container.trigger).not.toHaveBeenCalled()
     })
   })
+
+  describe('triggers a CONTAINER_TAP or CONTAINER_DBLTAP depending on the value of the tapTimer', () => {
+    jest.useFakeTimers()
+
+    test('triggers CONTAINER_TAP on touchend', () => {
+      this.container.options.allowUserInteraction = true
+      const evt = new TouchEvent('touchend')
+      const spy = jest.spyOn(this.container, 'trigger')
+      this.container.tapped(evt)
+
+      jest.advanceTimersByTime(this.container.clickDelay)
+
+      expect(spy).toHaveBeenCalledWith(Events.CONTAINER_TAP, expect.anything(Object), this.container.name, evt)
+    })
+
+    test('triggers CONTAINER_DBLTAP on double touchend', () => {
+      this.container.options.allowUserInteraction = true
+      const evt = new Event('touchend')
+      const spy = jest.spyOn(this.container, 'trigger')
+      this.container.tapped(evt)
+
+      setTimeout(() => {
+        this.container.tapped(evt)
+      }, this.container.clickDelay / 2)
+
+      jest.runOnlyPendingTimers()
+      expect(spy).not.toHaveBeenCalledWith(Events.CONTAINER_TAP)
+      expect(spy).toHaveBeenCalledWith(Events.CONTAINER_DBLTAP, expect.anything(Object), this.container.name, evt)
+    })
+  })
 })
