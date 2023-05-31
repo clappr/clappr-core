@@ -20,7 +20,7 @@
     "prepublishOnly": "npm run release"
   },
   "engines": {
-    "node": "^v14.0.0"
+    "node": ">=14"
   },
   "files": [
     "/dist",
