@@ -4,6 +4,7 @@
   "description": "Core components of the extensible media player for the web",
   "main": "./dist/clappr-core.js",
   "module": "./dist/clappr-core.esm.js",
+  "types": "./types/main.d.ts",
   "scripts": {
     "bundle-check": "ANALYZE_BUNDLE=true rollup --config",
     "release": "MINIMIZE=true rollup --config",
@@ -69,7 +70,8 @@
     "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-sizes": "^1.0.4",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-visualizer": "^5.5.4"
+    "rollup-plugin-visualizer": "^5.5.4",
+    "typescript": "^5.1.6"
   },
   "config": {
     "commitizen": {
