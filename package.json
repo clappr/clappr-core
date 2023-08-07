@@ -51,7 +51,7 @@
     "@rollup/plugin-replace": "^3.0.1",
     "autoprefixer": "10.4.2",
     "babel-jest": "^26.6.3",
-    "clappr-zepto": "0.0.7",
+    "clappr-zepto": "https://github.com/chicaothiago-tw/clappr-zepto#master",
     "coveralls": "^3.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.8.0",
