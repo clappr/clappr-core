@@ -4,8 +4,16 @@
  * @module base
  */
 declare class Events {
-    static register(eventName: any): void;
-    static listAvailableCustomEvents(): string[];
+    /**
+     * @static
+     * @param {string} eventName
+     */
+    static register(eventName: string): void;
+    /**
+     * @static
+     * @returns {*[]}
+     */
+    static listAvailableCustomEvents(): any[];
     /**
      * listen to an event indefinitely, if you want to stop you need to call `off`
      * @method on
@@ -45,6 +53,33 @@ declare class Events {
      * @param {Function} callback
      */
     stopListening(obj: any, name: string, callback: Function): this;
+    /**
+     * listen to an event indefinitely for a given `obj`
+     * @method listenTo
+     * @param {Object} obj
+     * @param {String} name
+     * @param {Function} callback
+     * @param {Object} context
+     * @example
+     * ```javascript
+     * this.listenTo(this.core.playback, Events.PLAYBACK_PAUSE, this.callback)
+     * ```
+     */
+    listenTo(obj: any, name: string, callback: Function): Events;
+    _listeningTo: {};
+    /**
+     * listen to an event once for a given `obj`
+     * @method listenToOnce
+     * @param {Object} obj
+     * @param {String} name
+     * @param {Function} callback
+     * @param {Object} context
+     * @example
+     * ```javascript
+     * this.listenToOnce(this.core.playback, Events.PLAYBACK_PAUSE, this.callback)
+     * ```
+     */
+    listenToOnce(obj: any, name: string, callback: Function): Events;
 }
 declare namespace Events {
     let PLAYER_READY: string;

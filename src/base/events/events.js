@@ -9,6 +9,14 @@ const slice = Array.prototype.slice
 
 const eventSplitter = /\s+/
 
+/**
+ * @function eventsApi
+ * @param {Object} obj
+ * @param {string} action
+ * @param {string} name
+ * @param {(string[]|Function)} rest
+ * @returns {boolean}
+ */
 const eventsApi = function(obj, action, name, rest) {
   if (!name) return true
 
@@ -32,6 +40,16 @@ const eventsApi = function(obj, action, name, rest) {
   return true
 }
 
+/**
+ *
+ * @param {Object[]} events
+ * @param {Function} events[].callback
+ * @param {Object} events[].context
+ * @param {Object} events[].ctx
+ * @param {*[]} args
+ * @param {string} klass
+ * @param {string} name
+ */
 const triggerEvents = function(events, args, klass, name) {
   let ev, i = -1
   const l = events.length, a1 = args[0], a2 = args[1], a3 = args[2]
@@ -168,6 +186,10 @@ export default class Events {
     return this
   }
 
+  /**
+   * @static
+   * @param {string} eventName
+   */
   static register(eventName) {
     Events.Custom || (Events.Custom = {})
     let property = typeof eventName === 'string' && eventName.toUpperCase().trim()
@@ -181,6 +203,10 @@ export default class Events {
 
   }
 
+  /**
+   * @static
+   * @returns {*[]}
+   */
   static listAvailableCustomEvents() {
     Events.Custom || (Events.Custom = {})
     return Object.keys(Events.Custom).filter((property) => typeof Events.Custom[property] === 'string')
@@ -199,6 +225,15 @@ export default class Events {
  * this.listenTo(this.core.playback, Events.PLAYBACK_PAUSE, this.callback)
  * ```
  */
+Events.prototype.listenTo = function(obj, name, callback) {
+  const listeningTo = this._listeningTo || (this._listeningTo = {})
+  const id = obj._listenId || (obj._listenId = uniqueId('l'))
+  listeningTo[id] = obj
+  if (!callback && typeof name === 'object') callback = this
+  obj.on(name, callback, this)
+  return this
+}
+
 /**
  * listen to an event once for a given `obj`
  * @method listenToOnce
@@ -211,18 +246,14 @@ export default class Events {
  * this.listenToOnce(this.core.playback, Events.PLAYBACK_PAUSE, this.callback)
  * ```
  */
-const listenMethods = { listenTo: 'on', listenToOnce: 'once' }
-
-Object.keys(listenMethods).forEach(function(method) {
-  Events.prototype[method] = function(obj, name, callback) {
-    const listeningTo = this._listeningTo || (this._listeningTo = {})
-    const id = obj._listenId || (obj._listenId = uniqueId('l'))
-    listeningTo[id] = obj
-    if (!callback && typeof name === 'object') callback = this
-    obj[listenMethods[method]](name, callback, this)
-    return this
-  }
-})
+Events.prototype.listenToOnce = function(obj, name, callback) {
+  const listeningTo = this._listeningTo || (this._listeningTo = {})
+  const id = obj._listenId || (obj._listenId = uniqueId('l'))
+  listeningTo[id] = obj
+  if (!callback && typeof name === 'object') callback = this
+  obj.once(name, callback, this)
+  return this
+}
 
 // PLAYER EVENTS
 /**
