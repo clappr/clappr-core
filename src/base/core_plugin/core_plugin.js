@@ -8,6 +8,11 @@ export default class CorePlugin extends BaseObject {
   constructor(core) {
     super(core.options)
     this.core = core
+
+    /**
+     * @property enabled
+     * @type {boolean}
+     */
     this.enabled = true
     this.bindEvents()
   }

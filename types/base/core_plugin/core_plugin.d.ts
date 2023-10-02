@@ -2,6 +2,10 @@ declare class CorePlugin {
     constructor(core: any);
     get playerError(): any;
     core: any;
+    /**
+     * @property enabled
+     * @type {boolean}
+     */
     enabled: boolean;
     bindEvents(): void;
     enable(): void;
