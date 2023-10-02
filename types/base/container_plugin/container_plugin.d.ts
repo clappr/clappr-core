@@ -9,6 +9,10 @@ declare class ContainerPlugin {
     constructor(container: any);
     get playerError(): any;
     container: any;
+    /**
+     * @property enabled
+     * @type {boolean}
+     */
     enabled: boolean;
     enable(): void;
     disable(): void;

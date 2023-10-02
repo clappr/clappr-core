@@ -15,6 +15,11 @@ export default class ContainerPlugin extends BaseObject {
   constructor(container) {
     super(container.options)
     this.container = container
+
+    /**
+     * @property enabled
+     * @type {boolean}
+     */
     this.enabled = true
     this.bindEvents()
   }
