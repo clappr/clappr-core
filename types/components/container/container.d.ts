@@ -99,7 +99,10 @@ export default class Container {
     mediaControlDisabled: boolean;
     plugins: any[];
     dblTapHandler: any;
-    clickTimer: any;
+    /**
+     * @type {setTimeout | null}
+     */
+    clickTimer: typeof setTimeout | null;
     clickDelay: number;
     actionsMetadata: {};
     /**
@@ -235,7 +238,7 @@ export default class Container {
     enableMediaControl(): void;
     updateStyle(): void;
     enableResizeObserver(): void;
-    resizeObserverInterval: NodeJS.Timer;
+    resizeObserverInterval: NodeJS.Timeout;
     disableResizeObserver(): void;
     checkResize(): void;
     currentSize: {
