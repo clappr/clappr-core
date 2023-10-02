@@ -2257,10 +2257,9 @@ cjs-module-lexer@^0.6.0:
   resolved "https://registry.yarnpkg.com/cjs-module-lexer/-/cjs-module-lexer-0.6.0.tgz#4186fcca0eae175970aee870b9fe2d6cf8d5655f"
   integrity sha512-uc2Vix1frTfnuzxxu1Hp4ktSvM3QaI4oXl4ZUqL1wjTu/BGki9TrCWoqLTg/drR1KwAEarXuRFCG2Svr1GxPFw==
 
-clappr-zepto@0.0.7:
+"clappr-zepto@https://github.com/chicaothiago-tw/clappr-zepto#master":
   version "0.0.7"
-  resolved "https://registry.yarnpkg.com/clappr-zepto/-/clappr-zepto-0.0.7.tgz#a235973d668d9041af589c265e2c31fe54226fe1"
-  integrity sha512-RdCmECIe8V0LPt22V1eoxWd4e+feXWxHophotqeznXQDNswUMX/xHPvmTtQlvVHoTvPsXybzOMU+smjQ3lR27w==
+  resolved "https://github.com/chicaothiago-tw/clappr-zepto#f267b2ba82664e492461420a8f86ecb544fcc046"
 
 class-utils@^0.3.5:
   version "0.3.6"
