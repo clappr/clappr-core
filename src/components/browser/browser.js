@@ -24,6 +24,17 @@ const hasFlash = function() {
   }
 }
 
+/**
+ * @typedef getBrowserDataReturnType
+ * @type {object}
+ * @property {string} name
+ * @property {number} version
+ */
+/**
+ * @function getBrowserData
+ * @param {string} ua
+ * @returns {getBrowserDataReturnType}
+ */
 export const getBrowserInfo = function(ua) {
   let parts = ua.match(/\b(playstation 4|nx|opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [],
     extra
@@ -151,6 +162,16 @@ const setOsVersion = function(version, separator, osObject) {
 }
 
 // Set viewport size
+/**
+ * @typedef ViewportSizeType
+ * @type {object}
+ * @property {number} width
+ * @property {number} height
+ */
+/**
+ * @function getViewportSize
+ * @returns {ViewportSizeType} viewportObject
+ */
 export const getViewportSize = function() {
   let viewportObject = {}
 
@@ -173,6 +194,11 @@ const setViewportOrientation = function() {
   }
 }
 
+/**
+ * @function getDevice
+ * @param {string} ua
+ * @returns {string}
+ */
 export const getDevice = function(ua) {
   let platformRegExp = /\((iP(?:hone|ad|od))?(?:[^;]*; ){0,2}([^)]+(?=\)))/
   let matches = platformRegExp.exec(ua)

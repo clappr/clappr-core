@@ -1,7 +1,4 @@
-export function getBrowserInfo(ua: any): {
-    name: any;
-    version: number;
-};
+export function getBrowserInfo(ua: string): getBrowserDataReturnType;
 export function getBrowserData(): {
     name: string;
     group: string;
@@ -10,12 +7,17 @@ export function getOsData(): {
     name: string;
     group: string;
 };
-export function getViewportSize(): {
-    width: any;
-    height: any;
-};
-export function getDevice(ua: any): string;
+export function getViewportSize(): ViewportSizeType;
+export function getDevice(ua: string): string;
 export default Browser;
+export type getBrowserDataReturnType = {
+    name: string;
+    version: number;
+};
+export type ViewportSizeType = {
+    width: number;
+    height: number;
+};
 declare namespace Browser {
     export let isEdge: boolean;
     export let isChrome: boolean;
@@ -54,13 +56,13 @@ declare namespace Browser {
     export let isMacOS: boolean;
     export let isLinux: boolean;
     export namespace viewport {
-        let width: any;
-        let height: any;
+        let width: number;
+        let height: number;
     }
     export let device: string;
 }
 declare namespace browserInfo {
-    let name_3: any;
+    let name_3: string;
     export { name_3 as name };
     let version_1: number;
     export { version_1 as version };
