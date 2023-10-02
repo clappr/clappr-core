@@ -2,6 +2,10 @@ declare class UICorePlugin {
     constructor(core: any);
     get playerError(): any;
     core: any;
+    /**
+     * @property enabled
+     * @type boolean
+     */
     enabled: boolean;
     bindEvents(): void;
     getExternalInterface(): {};

@@ -8,6 +8,10 @@ export default class UICorePlugin extends UIObject {
   constructor(core) {
     super(core.options)
     this.core = core
+    /**
+     * @property enabled
+     * @type boolean
+     */
     this.enabled = true
     this.bindEvents()
     this.render()
