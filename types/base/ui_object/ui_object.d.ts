@@ -3,10 +3,7 @@
  * @class UIObject
  * @constructor
  * @extends BaseObject
- * @module base
- *
- * @typedef {Object} UIObject
- * @property {string} cid - a unique id prefixed with `'c'`, `c1, c232`
+ * @module base a unique id prefixed with `'c'`, `c1, c232`
  * @property {HTMLElement} el - the dom itself
  * @property {HTMLElement} $el - the dom element wrapped by $
  */
@@ -20,24 +17,6 @@ export default class UIObject {
      * @param {Object} options the options object
      */
     constructor(options: any);
-    /**
-     * a unique id prefixed with `'c'`, `c1, c232`
-     *
-     * @property {String} cid
-     * @type {String}
-     */
-    /**
-     * the dom element itself
-     *
-     * @property {HTMLElement} el
-     * @type {HTMLElement}
-     */
-    /**
-     * the dom element wrapped by `$`
-     *
-     * @property {HTMLElement} $el
-     * @type {HTMLElement}
-     */
     /**
      * gets the tag name for the ui component
      * @method tagName
@@ -90,6 +69,14 @@ export default class UIObject {
      */
     cid: string;
     /**
+     * @type {HTMLElement}
+     */
+    $el: HTMLElement;
+    /**
+     * @type {HTMLElement}
+     */
+    el: HTMLElement;
+    /**
      * selects within the component.
      * @method $
      * @param {String} selector a selector to find within the component.
@@ -120,8 +107,6 @@ export default class UIObject {
      * @return {UIObject} itself
      */
     setElement(element: HTMLElement, delegate: boolean): UIObject;
-    $el: any;
-    el: any;
     /**
      * delegates all the original `events` on `element` to its callbacks
      * @method delegateEvents
@@ -142,20 +127,3 @@ export default class UIObject {
      */
     private _ensureElement;
 }
-/**
- * A base class to create ui object.
- */
-export type UIObject = {
-    /**
-     * - a unique id prefixed with `'c'`, `c1, c232`
-     */
-    cid: string;
-    /**
-     * - the dom itself
-     */
-    el: HTMLElement;
-    /**
-     * - the dom element wrapped by $
-     */
-    $el: HTMLElement;
-};
