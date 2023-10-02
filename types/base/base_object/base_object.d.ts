@@ -16,6 +16,18 @@ export default class BaseObject {
      * @type Object
      */
     get options(): any;
+    /**
+     * the options
+     *
+     * @property _options
+     * @type {Object}
+     */
     _options: any;
-    uniqueId: any;
+    /**
+    * a unique id prefixed with `'o'`, `o1, o232`
+    *
+    * @property uniqueId
+    * @type String
+    */
+    uniqueId: string;
 }
