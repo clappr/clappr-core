@@ -80,7 +80,7 @@ export default class Core {
     setPlayerSize(): void;
     resize(options: any): void;
     enableResizeObserver(): void;
-    resizeObserverInterval: NodeJS.Timer;
+    resizeObserverInterval: NodeJS.Timeout;
     triggerResize(newSize: any): void;
     oldHeight: any;
     oldWidth: any;

@@ -49,7 +49,7 @@ declare class HTML5Video {
     _loadStarted: boolean;
     _isBuffering: boolean;
     _playheadMoving: boolean;
-    _playheadMovingTimer: NodeJS.Timer;
+    _playheadMovingTimer: NodeJS.Timeout;
     _stopped: boolean;
     _ccTrackId: number;
     _minDvrSize: any;
