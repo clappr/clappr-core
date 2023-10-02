@@ -14,25 +14,30 @@ const delegateEventSplitter = /^(\S+)\s*(.*)$/
  * @constructor
  * @extends BaseObject
  * @module base
+ *
+ * @typedef {Object} UIObject
+ * @property {string} cid - a unique id prefixed with `'c'`, `c1, c232`
+ * @property {HTMLElement} el - the dom itself
+ * @property {HTMLElement} $el - the dom element wrapped by $
  */
 export default class UIObject extends BaseObject {
   /**
    * a unique id prefixed with `'c'`, `c1, c232`
    *
-   * @property cid
-   * @type String
+   * @property {String} cid
+   * @type {String}
    */
   /**
    * the dom element itself
    *
-   * @property el
-   * @type HTMLElement
+   * @property {HTMLElement} el
+   * @type {HTMLElement}
    */
   /**
    * the dom element wrapped by `$`
    *
-   * @property $el
-   * @type HTMLElement
+   * @property {HTMLElement} $el
+   * @type {HTMLElement}
    */
 
   /**
@@ -92,6 +97,10 @@ export default class UIObject extends BaseObject {
    */
   constructor(options) {
     super(options)
+    /**
+     * @property cid
+     * @type string
+     */
     this.cid = uniqueId('c')
     this._ensureElement()
     this.delegateEvents()

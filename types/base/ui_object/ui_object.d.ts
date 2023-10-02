@@ -4,6 +4,11 @@
  * @constructor
  * @extends BaseObject
  * @module base
+ *
+ * @typedef {Object} UIObject
+ * @property {string} cid - a unique id prefixed with `'c'`, `c1, c232`
+ * @property {HTMLElement} el - the dom itself
+ * @property {HTMLElement} $el - the dom element wrapped by $
  */
 export default class UIObject {
     /**
@@ -18,20 +23,20 @@ export default class UIObject {
     /**
      * a unique id prefixed with `'c'`, `c1, c232`
      *
-     * @property cid
-     * @type String
+     * @property {String} cid
+     * @type {String}
      */
     /**
      * the dom element itself
      *
-     * @property el
-     * @type HTMLElement
+     * @property {HTMLElement} el
+     * @type {HTMLElement}
      */
     /**
      * the dom element wrapped by `$`
      *
-     * @property $el
-     * @type HTMLElement
+     * @property {HTMLElement} $el
+     * @type {HTMLElement}
      */
     /**
      * gets the tag name for the ui component
@@ -79,7 +84,11 @@ export default class UIObject {
      * ```
      */
     get attributes(): any;
-    cid: any;
+    /**
+     * @property cid
+     * @type string
+     */
+    cid: string;
     /**
      * selects within the component.
      * @method $
@@ -133,3 +142,20 @@ export default class UIObject {
      */
     private _ensureElement;
 }
+/**
+ * A base class to create ui object.
+ */
+export type UIObject = {
+    /**
+     * - a unique id prefixed with `'c'`, `c1, c232`
+     */
+    cid: string;
+    /**
+     * - the dom itself
+     */
+    el: HTMLElement;
+    /**
+     * - the dom element wrapped by $
+     */
+    $el: HTMLElement;
+};
