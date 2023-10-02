@@ -27,11 +27,15 @@ declare class Playback {
     * @type Boolean
     */
     get isAudioOnly(): boolean;
+    /**
+     * @property isAdaptive
+     * @return {boolean}
+     */
     get isAdaptive(): boolean;
     /**
      * Determine if the playback has ended.
      * @property ended
-     * @type Boolean
+     * @type {boolean}
      */
     get ended(): boolean;
     /**
@@ -48,9 +52,21 @@ declare class Playback {
      * @type Boolean
      */
     get buffering(): boolean;
-    settings: {};
-    _i18n: Strings;
+    /**
+     * @property settings
+     * @type {Object}
+     */
+    settings: any;
+    /**
+     * @property _i18n
+     * @type {string}
+     */
+    _i18n: string;
     playerError: any;
+    /**
+     * @property _consented
+     * @type {boolean}
+     */
     _consented: boolean;
     /**
      * Gives user consent to playback (mobile devices).
