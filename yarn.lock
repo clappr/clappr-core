@@ -2257,10 +2257,9 @@ cjs-module-lexer@^0.6.0:
   resolved "https://registry.yarnpkg.com/cjs-module-lexer/-/cjs-module-lexer-0.6.0.tgz#4186fcca0eae175970aee870b9fe2d6cf8d5655f"
   integrity sha512-uc2Vix1frTfnuzxxu1Hp4ktSvM3QaI4oXl4ZUqL1wjTu/BGki9TrCWoqLTg/drR1KwAEarXuRFCG2Svr1GxPFw==
 
-clappr-zepto@0.0.7:
+"clappr-zepto@https://github.com/chicaothiago-tw/clappr-zepto#master":
   version "0.0.7"
-  resolved "https://registry.yarnpkg.com/clappr-zepto/-/clappr-zepto-0.0.7.tgz#a235973d668d9041af589c265e2c31fe54226fe1"
-  integrity sha512-RdCmECIe8V0LPt22V1eoxWd4e+feXWxHophotqeznXQDNswUMX/xHPvmTtQlvVHoTvPsXybzOMU+smjQ3lR27w==
+  resolved "https://github.com/chicaothiago-tw/clappr-zepto#f267b2ba82664e492461420a8f86ecb544fcc046"
 
 class-utils@^0.3.5:
   version "0.3.6"
@@ -7350,6 +7349,11 @@ typescript@^4.6.4:
   version "4.9.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.4.tgz#a2a3d2756c079abda241d75f149df9d561091e78"
   integrity sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==
+
+typescript@^5.1.6:
+  version "5.1.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.6.tgz#02f8ac202b6dad2c0dd5e0913745b47a37998274"
+  integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
 
 uglify-js@3.4.x:
   version "3.4.10"

@@ -153,6 +153,9 @@ export default class Container extends UIObject {
     this.mediaControlDisabled = false
     this.plugins = [this.playback]
     this.dblTapHandler = new DoubleEventHandler(500)
+    /**
+     * @type {setTimeout | null}
+     */
     this.clickTimer = null
     this.clickDelay = 200  // FIXME: could be a player option
     this.actionsMetadata = {}

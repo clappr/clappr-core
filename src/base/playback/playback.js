@@ -31,6 +31,10 @@ export default class Playback extends UIObject {
     return false
   }
 
+  /**
+   * @property isAdaptive
+   * @return {boolean}
+   */
   get isAdaptive() {
     return false
   }
@@ -38,7 +42,7 @@ export default class Playback extends UIObject {
   /**
    * Determine if the playback has ended.
    * @property ended
-   * @type Boolean
+   * @type {boolean}
    */
   get ended() {
     return false
@@ -100,9 +104,21 @@ export default class Playback extends UIObject {
    */
   constructor(options, i18n, playerError) {
     super(options)
+    /**
+     * @property settings
+     * @type {Object}
+     */
     this.settings = {}
+    /**
+     * @property _i18n
+     * @type {string}
+     */
     this._i18n = i18n
     this.playerError = playerError
+    /**
+     * @property _consented
+     * @type {boolean}
+     */
     this._consented = false
   }
 

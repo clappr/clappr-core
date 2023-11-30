@@ -6,6 +6,16 @@
 
 // By default, Underscore uses ERB-style template delimiters, change the
 // following template settings to use alternative delimiters.
+/**
+ * @typedef SettingsTmplType
+ * @type {object}
+ * @property {RegExp} evaluate
+ * @property {RegExp} interpolate
+ * @property {RegExp} escape
+ */
+/**
+ * @type {SettingsTmplType}
+ */
 var settings = {
   evaluate    : /<%([\s\S]+?)%>/g,
   interpolate : /<%=([\s\S]+?)%>/g,
@@ -15,8 +25,10 @@ var settings = {
 // When customizing `templateSettings`, if you don't want to define an
 // interpolation, evaluation or escaping regex, we need one that is
 // guaranteed not to match.
+/**
+ * @type {RegExp}
+ */
 var noMatch = /(.)^/
-
 // Certain characters need to be escaped so that they can be put into a
 // string literal.
 var escapes = {
@@ -29,6 +41,9 @@ var escapes = {
   '\u2029': 'u2029'
 }
 
+/**
+ * @type {RegExp}
+ */
 var escaper = /\\|'|\r|\n|\t|\u2028|\u2029/g
 
 // List of HTML entities for escaping.
@@ -40,6 +55,9 @@ var htmlEntities = {
   '\'': '&#x27;'
 }
 
+/**
+ * @type {RegExp}
+ */
 var entityRe = new RegExp('[&<>"\']', 'g')
 
 var escapeExpr = function(string) {
@@ -51,9 +69,15 @@ var escapeExpr = function(string) {
 
 var counter = 0
 
-// JavaScript micro-templating, similar to John Resig's implementation.
-// Underscore templating handles arbitrary delimiters, preserves whitespace,
-// and correctly escapes quotes within interpolated code.
+/**
+ * JavaScript micro-templating, similar to John Resig's implementation.
+ * Underscore templating handles arbitrary delimiters, preserves whitespace,
+ * and correctly escapes quotes within interpolated code.
+ *
+ * @param {string} text
+ * @param {*=} data
+ * @returns
+ */
 var tmpl = function(text, data) {
   var render
 
@@ -111,6 +135,6 @@ var tmpl = function(text, data) {
 
   return template
 }
-tmpl.settings = settings
 
+tmpl.settings = settings
 export default tmpl

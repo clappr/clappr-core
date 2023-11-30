@@ -25,13 +25,21 @@ export default class BaseObject extends Events {
    */
   constructor(options={}) {
     super(options)
+
+    /**
+     * the options
+     *
+     * @property _options
+     * @type {Object}
+     */
     this._options = options
+
+    /**
+    * a unique id prefixed with `'o'`, `o1, o232`
+    *
+    * @property uniqueId
+    * @type String
+    */
     this.uniqueId = uniqueId('o')
   }
-  /**
-  * a unique id prefixed with `'o'`, `o1, o232`
-  *
-  * @property uniqueId
-  * @type String
-  */
 }
