@@ -43,6 +43,7 @@ export default class HTML5Video extends Playback {
   get name() { return 'html5_video' }
   get supportedVersion() { return { min: VERSION } }
   get tagName() { return this.isAudioOnly ? 'audio' : 'video' }
+  get template() { return template(tracksHTML) }
 
   get isAudioOnly() {
     const resourceUrl = this.options.src
@@ -252,6 +253,7 @@ export default class HTML5Video extends Playback {
   }
 
   _onLoadedMetadata(e) {
+    this._ready()
     this._handleBufferingEvents()
     this.trigger(Events.PLAYBACK_LOADEDMETADATA, { duration: e.target.duration, data: e })
     this._updateSettings()
@@ -625,8 +627,7 @@ export default class HTML5Video extends Playback {
   }
 
   _ready() {
-    if (this._isReadyState)
-      return
+    if (this._isReadyState) return
 
     this._isReadyState = true
     this.trigger(Events.PLAYBACK_READY, this.name)
@@ -709,24 +710,13 @@ export default class HTML5Video extends Playback {
     })
   }
 
-  get template() { return template(tracksHTML) }
-
   render() {
-    if (this.options.playback.disableContextMenu) {
-      this.$el.on('contextmenu', () => {
-        return false
-      })
-    }
+    this.options.playback.disableContextMenu && this.$el.on('contextmenu', () => { return false })
+    this._externalTracks && this._externalTracks.length > 0 && this.$el.html(this.template({ tracks: this._externalTracks }))
 
-    if (this._externalTracks && this._externalTracks.length > 0) {
-      this.$el.html(this.template({
-        tracks: this._externalTracks,
-      }))
-    }
-
-    this._ready()
     const style = Styler.getStyleFor(HTML5VideoStyle.toString(), { baseUrl: this.options.baseUrl })
     this.$el.append(style[0])
+
     return this
   }
 }
