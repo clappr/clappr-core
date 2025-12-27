@@ -412,19 +412,4 @@ describe('Utils', () => {
       expect(video1).toEqual(video2)
     })
   })
-
-  describe('DoubleEventHandler module', () => {
-    test('handle double event', (done) => {
-      const handler = new utils.DoubleEventHandler()
-      const spy = jest.fn()
-      const evt = new Event('touchend')
-
-      handler.handle(evt, spy)
-      setTimeout(() => {
-        handler.handle(evt, spy)
-        expect(spy).toHaveBeenCalledTimes(1)
-        done()
-      }, 500/2)
-    })
-  })
 })

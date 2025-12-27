@@ -10,7 +10,6 @@ import Events from '@/base/events'
 import UIObject from '@/base/ui_object'
 import ErrorMixin from '@/base/error_mixin'
 import Styler from '@/base/styler'
-import { DoubleEventHandler } from '@/utils'
 
 import ContainerStyle from './public/style.scss'
 
@@ -37,7 +36,7 @@ export default class Container extends UIObject {
     return {
       'click': 'clicked',
       'dblclick': 'dblClicked',
-      'touchend': 'dblTap',
+      'touchend': 'tapped',
       'contextmenu': 'onContextMenu',
       'mouseenter': 'mouseEnter',
       'mouseleave': 'mouseLeave',
@@ -152,9 +151,9 @@ export default class Container extends UIObject {
     this.isReady = false
     this.mediaControlDisabled = false
     this.plugins = [this.playback]
-    this.dblTapHandler = new DoubleEventHandler(500)
     this.clickTimer = null
     this.clickDelay = 200  // FIXME: could be a player option
+    this.tapTimer = null
     this.actionsMetadata = {}
     this.bindEvents()
   }
@@ -390,12 +389,13 @@ export default class Container extends UIObject {
     this.currentTime = 0
   }
 
-  clicked() {
+  clicked(evt) {
     if (!this.options.chromeless || this.options.allowUserInteraction) {
       // The event is delayed because it can be canceled by a double-click event
       // An example of use is to prevent playback from pausing when switching to full screen
       this.clickTimer = setTimeout(() => {
-        this.clickTimer && this.trigger(Events.CONTAINER_CLICK, this, this.name)
+        this.clickTimer && this.trigger(Events.CONTAINER_CLICK, this, this.name, evt)
+        this.clickTimer = null
       }, this.clickDelay)
     }
   }
@@ -405,20 +405,37 @@ export default class Container extends UIObject {
     this.clickTimer = null
   }
 
-  dblClicked() {
+  dblClicked(evt) {
     if (!this.options.chromeless || this.options.allowUserInteraction) {
       this.cancelClicked()
-      this.trigger(Events.CONTAINER_DBLCLICK, this, this.name)
+      this.trigger(Events.CONTAINER_DBLCLICK, this, this.name, evt)
     }
   }
 
-  dblTap(evt) {
-    if (!this.options.chromeless || this.options.allowUserInteraction) {
-      this.dblTapHandler.handle(evt, () => {
-        this.cancelClicked()
-        this.trigger(Events.CONTAINER_DBLCLICK, this, this.name)
-      })
+  tapped(evt) {
+    if (this.options.chromeless || !this.options.allowUserInteraction) return
+
+    if (this.tapTimer) {
+      this.cancelTapped()
+      this.cancelClicked()
+      this.trigger(Events.CONTAINER_DBLTAP, this, this.name, evt)
+      // Do not let the browser emit a click event afterward
+      evt.preventDefault()
+      return
     }
+
+    // The event is delayed because it can be canceled by a double tap event
+    this.tapTimer = setTimeout(() => {
+      if (this.tapTimer) {
+        this.trigger(Events.CONTAINER_TAP, this, this.name, evt)
+        this.tapTimer = null
+      }
+    }, this.clickDelay)
+  }
+
+  cancelTapped() {
+    clearTimeout(this.tapTimer)
+    this.tapTimer = null
   }
 
   onContextMenu(event) {
